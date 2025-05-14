@@ -49,26 +49,4 @@ en el simulador podiamos escoger un payload el cual era un mensaje que se imprim
 --
 
 ## 🧠 6. Conclusiones
-<<<<<<< HEAD
-
-- El uso del exchange tipo `topic` permite enrutar mensajes según múltiples criterios (ubicación y severidad).
-- El patrón `cityA.*` recibe todos los eventos de la ciudad sin importar la gravedad.
-- El patrón `*.high` captura eventos críticos sin importar la ciudad.
-- Un solo producer es suficiente para enviar múltiples alertas variando solo routing key y payload.
-
----
-
-## 📁 7. Estructura del Repositorio
-
-```bash
-ejercicio6-alertas/
-├── informe.md
-├── capturas/
-│   ├── exchange_config.png
-│   ├── bindings_config.png
-│   ├── producer_sent_messages.png
-│   ├── cityA_queue_received.png
-│   └── high_alerts_queue_received.png
-=======
 AHora podemos comprender mejor como funciona el flujo de RabbitMQ lo cual hace mucho mas sencilla la vida del arquitecto de software
->>>>>>> b27e6bf500de266834de8d5de2c3b8dfca1aca45
