@@ -1,0 +1,36 @@
+services:
+  web:
+    build: ./app
+    ports:
+      - "5000:5000"
+    depends_on:
+      - rabbitmq
+    environment:
+      - FLASK_APP=__init__:create_app
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./app:/app
+    restart: on-failure
+    command: flask run --host=0.0.0.0 --reload
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+
+  worker:
+    build: ./app
+    command: python worker.py
+    depends_on:
+      - rabbitmq
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./app:/app
+    restart: on-failure
+
+volumes:
+  rabbitmq_data:
