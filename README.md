@@ -1,5 +1,5 @@
 # Sistema de Reserva de Citas Médicas
-
+![alt text](image.png)
 ## Visión General
 Este sistema permite gestionar reservas de citas médicas de forma asíncrona, utilizando RabbitMQ para procesar las solicitudes y notificar los cambios de estado.
 
