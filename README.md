@@ -13,6 +13,16 @@ En nuestro sistema:
 - Este exchange distribuye las notificaciones de cambios de estado (confirmado/rechazado) a todos los servicios suscritos
 - No filtra mensajes, sino que los envía a todas las colas vinculadas
 
+<code># En worker.py
+def publish_notification(booking):
+    connection = pika.BlockingConnection(pika.ConnectionParameters('rabbitmq'))
+    channel = connection.channel()
+    # Define el exchange booking_notifications
+    channel.exchange_declare(exchange='booking_notifications', exchange_type='fanout')
+    message = f"Cita para {booking.paciente} - {booking.estado}"
+    channel.basic_publish(exchange='booking_notifications', routing_key='', body=message)
+    connection.close() </code>
+
 ### Producers (Productores)
 Los **Productores** son las partes del sistema que envían mensajes a RabbitMQ para ser procesados.
 
